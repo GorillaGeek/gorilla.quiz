@@ -3,6 +3,19 @@ install:
   - nuget restore
 configuration: Release
 platform: Any CPU
+environment:
+  COVERALLS_REPO_TOKEN:
+    secure: vRVE9OyF5ndUFwd2Erbu5iHFQaI8YP9nP
 build:
   project: gorilla.quiz.sln
   verbosity: minimal
+after_test:
+  - ps: |
+      if ($env:COVERALLS_REPO_TOKEN)
+      {
+        nuget.exe install OpenCover -ExcludeVersion
+        nuget.exe install coveralls.io -ExcludeVersion
+        nuget.exe install NUnit.Runners -ExcludeVersion
+        OpenCover\tools\OpenCover.Console.exe -register:user -filter:"+[*]*" -target:"NUnit.Runners\tools\nunit-console.exe" "-targetargs:/noshadow /domain:single gorilla.quiz.test\bin\Release\gorilla.quiz.test.dll" -output:coverage.xml
+        coveralls.io\tools\coveralls.net.exe --opencover coverage.xml
+      }
