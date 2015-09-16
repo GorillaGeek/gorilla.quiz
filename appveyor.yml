@@ -1,0 +1,8 @@
+version: 0.0.{build}
+install:
+  - nuget restore
+configuration: Release
+platform: Any CPU
+build:
+  project: gorilla.quiz.sln
+  verbosity: minimal
