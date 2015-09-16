@@ -1,13 +1,13 @@
 ﻿using GorillaQuiz.Question;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 
 namespace GorillaQuiz.Test.Question
 {
-    [TestClass]
+    [TestFixture]
     public class SingleChoiceTest
     {
-        [TestMethod]
+        [Test]
         public void SingleChoiceQuestionCreate()
         {
             var question = SingleChoice.Create("Hello World", 10);
@@ -16,7 +16,7 @@ namespace GorillaQuiz.Test.Question
             Assert.AreEqual("Hello World", question.Title);
         }
 
-        [TestMethod]
+        [Test]
         public void SingleChoiceAddChoice()
         {
             var question = SingleChoice.Create("asd");
@@ -28,7 +28,7 @@ namespace GorillaQuiz.Test.Question
             Assert.AreEqual(1, question.ChoiceCount());
         }
 
-        [TestMethod]
+        [Test]
         public void SingleChoiceRemoveChoice()
         {
             var question = SingleChoice.Create("asd");

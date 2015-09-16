@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
+﻿using Moq;
+using NUnit.Framework;
 
 namespace GorillaQuiz.Test
 {
-    [TestClass]
+    [TestFixture]
     public class QuizzTest
     {
-        [TestMethod]
+        [Test]
         public void QuizzCreate()
         {
             var quiz = Quiz.Create("My Quiz");
@@ -15,7 +15,7 @@ namespace GorillaQuiz.Test
             Assert.AreEqual(0, quiz.QuestionCount());
         }
 
-        [TestMethod]
+        [Test]
         public void ShouldAddQuestion()
         {
             var quiz = Quiz.Create("test");
@@ -27,7 +27,7 @@ namespace GorillaQuiz.Test
             Assert.AreEqual(1, quiz.QuestionCount());
         }
 
-        [TestMethod]
+        [Test]
         public void ShouldRemoveQuestion()
         {
             var quiz = Quiz.Create("test");
@@ -40,7 +40,7 @@ namespace GorillaQuiz.Test
             Assert.AreEqual(0, quiz.QuestionCount());
         }
 
-        [TestMethod]
+        [Test]
         public void SerializeQuiz()
         {
             var quiz = Quiz.Create("test");
@@ -50,7 +50,7 @@ namespace GorillaQuiz.Test
             Assert.AreEqual("{\"title\":\"test\",\"questions\":[]}", json);
         }
 
-        [TestMethod]
+        [Test]
         public void UnserializeQuiz()
         {
             var quiz = Quiz.Create("test");
@@ -62,6 +62,6 @@ namespace GorillaQuiz.Test
             Assert.AreEqual(quiz.QuestionCount(), quiz2.QuestionCount());
         }
 
-        
+
     }
 }

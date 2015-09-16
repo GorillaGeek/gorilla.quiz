@@ -1,13 +1,13 @@
 ﻿using GorillaQuiz.Choice;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using NUnit.Framework;
 
 namespace GorillaQuiz.Test.Choice
 {
-    [TestClass]
+    [TestFixture]
     public class TextChoiceTest
     {
-        [TestMethod]
+        [Test]
         public void TextChoiceCreate()
         {
             var choice = TextChoice.Create("Test", true);
@@ -16,7 +16,7 @@ namespace GorillaQuiz.Test.Choice
             Assert.AreEqual(true, choice.Correct);
         }
 
-        [TestMethod]
+        [Test]
         public void SerializeTextChoice()
         {
             var choice = TextChoice.Create("Test", true);
@@ -24,7 +24,7 @@ namespace GorillaQuiz.Test.Choice
             Assert.AreEqual("{\"type\":\"Text\",\"text\":\"Test\"}", serial);
         }
 
-        [TestMethod]
+        [Test]
         public void ReconstructTextChoice()
         {
             var obj = JsonConvert.DeserializeObject("{\"type\":\"Text\",\"text\":\"Test\"}");

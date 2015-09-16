@@ -4,3 +4,8 @@ obj
 bin
 .vs
 TestResults/
+NUnit.Runners/
+OpenCover/
+TestResult.xml
+coverage.xml
+coveralls.io/
