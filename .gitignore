@@ -1,0 +1,6 @@
+*.nupkg
+packages
+obj
+bin
+.vs
+TestResults/

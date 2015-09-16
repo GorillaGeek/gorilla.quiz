@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GorillaQuiz", "gorilla.quiz\GorillaQuiz.csproj", "{8FF1DE51-4890-4CBA-8249-E5621C7ED9CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GorillaQuiz.Test", "gorilla.quiz.test\GorillaQuiz.Test.csproj", "{D111D87A-D43E-44F2-BB22-98474B1B1A79}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8FF1DE51-4890-4CBA-8249-E5621C7ED9CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FF1DE51-4890-4CBA-8249-E5621C7ED9CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FF1DE51-4890-4CBA-8249-E5621C7ED9CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FF1DE51-4890-4CBA-8249-E5621C7ED9CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D111D87A-D43E-44F2-BB22-98474B1B1A79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D111D87A-D43E-44F2-BB22-98474B1B1A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D111D87A-D43E-44F2-BB22-98474B1B1A79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D111D87A-D43E-44F2-BB22-98474B1B1A79}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
