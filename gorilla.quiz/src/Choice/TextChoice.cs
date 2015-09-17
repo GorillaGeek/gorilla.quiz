@@ -20,7 +20,7 @@
             return new TextChoice(text, isCorrect);
         }
 
-        public object ToObject(bool @public = false)
+        public object Export(bool @public = false)
         {
             return new
             {

@@ -1,9 +1,8 @@
 ﻿namespace GorillaQuiz
 {
-    public interface IQuestion : ISerializable
+    public interface IQuestion : IExportable
     {
         float Score { get; set; }
-
-        object ToObject(bool @public = false);
+        
     }
 }

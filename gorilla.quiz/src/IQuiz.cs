@@ -1,6 +1,6 @@
 ﻿namespace GorillaQuiz
 {
-    public interface IQuiz
+    public interface IQuiz : IExportable
     {
         string Title { get; set; }
 

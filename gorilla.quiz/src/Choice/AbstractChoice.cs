@@ -4,7 +4,7 @@ namespace GorillaQuiz.Choice
 {
     public abstract class AbstractChoice : IChoice
     {
-        public abstract object ToObject(bool @public = false);
+        public abstract object Export(bool @public = false);
         public abstract bool Correct { get; }
 
         public static IChoice CreateFromJsonDynamic(dynamic choice, bool correct)

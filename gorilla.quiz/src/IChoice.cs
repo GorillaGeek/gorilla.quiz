@@ -1,6 +1,6 @@
 ﻿namespace GorillaQuiz
 {
-    public interface IChoice : ISerializable
+    public interface IChoice : IExportable
     {
         bool Correct { get; }
     }

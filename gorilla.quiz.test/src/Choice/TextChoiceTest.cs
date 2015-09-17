@@ -20,7 +20,7 @@ namespace GorillaQuiz.Test.Choice
         public void SerializeTextChoice()
         {
             var choice = TextChoice.Create("Test", true);
-            var serial = JsonConvert.SerializeObject(choice.ToObject());
+            var serial = JsonConvert.SerializeObject(choice.Export());
             Assert.AreEqual("{\"type\":\"Text\",\"text\":\"Test\"}", serial);
         }
 

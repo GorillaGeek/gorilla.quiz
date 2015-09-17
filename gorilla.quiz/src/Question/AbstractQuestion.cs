@@ -11,7 +11,6 @@
         public string Title { get; set; }
 
         public float Score { get; set; }
-
-        public abstract object ToObject(bool @public = false);
+        public abstract object Export(bool @public = false);
     }
 }

@@ -51,7 +51,7 @@ namespace GorillaQuiz.Question
             return new SingleChoice(title, score);
         }
 
-        public override object ToObject(bool @public = false)
+        public override object Export(bool @public = false)
         {
             var choices = new List<object>();
             var correct = 0;
@@ -65,7 +65,7 @@ namespace GorillaQuiz.Question
                     correct = index;
                 }
 
-                choices.Add(choice.ToObject());
+                choices.Add(choice.Export());
                 index++;
             }
 

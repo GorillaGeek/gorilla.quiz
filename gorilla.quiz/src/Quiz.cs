@@ -57,20 +57,23 @@ namespace GorillaQuiz
 
         public string Serialize(bool @public = false)
         {
+            return JsonConvert.SerializeObject(Export(@public));
+        }
+
+        public object Export(bool @public = false)
+        {
             var questions = new List<object>();
 
             foreach (var question in _questions)
             {
-                questions.Add(question.ToObject(@public));
+                questions.Add(question.Export(@public));
             }
 
-            object result = new
+            return new
             {
                 title = Title,
                 questions = questions
             };
-
-            return JsonConvert.SerializeObject(result);
         }
 
         public static Quiz CreateFromJsonString(string json)

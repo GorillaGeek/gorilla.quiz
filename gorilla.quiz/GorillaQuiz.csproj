@@ -51,7 +51,7 @@
     <Compile Include="src\IChoice.cs" />
     <Compile Include="src\IQuestion.cs" />
     <Compile Include="src\IQuiz.cs" />
-    <Compile Include="src\ISerializable.cs" />
+    <Compile Include="src\IExportable.cs" />
     <Compile Include="src\Question\AbstractQuestion.cs" />
     <Compile Include="src\Question\SingleChoice.cs" />
     <Compile Include="src\Quiz.cs" />
