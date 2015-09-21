@@ -80,7 +80,7 @@ namespace GorillaQuiz
         public static Quiz CreateFromJsonString(string json)
         {
             var obj = JsonConvert.DeserializeObject<dynamic>(json);
-            var quiz = Quiz.Create((string)obj.title);
+            var quiz = Quiz.Create((string)obj.title, (float)obj.neededScore);
 
             foreach (var q in obj.questions)
             {

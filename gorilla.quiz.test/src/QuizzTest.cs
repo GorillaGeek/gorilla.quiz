@@ -74,7 +74,7 @@ namespace GorillaQuiz.Test
         [Test]
         public void UnserializeQuiz()
         {
-            var json = "{\"title\":\"test\",\"questions\":[{\"type\":\"SingleChoice\",\"question\":\"how much is pi ?\",\"score\":10.0,\"correct\":0,\"choices\":[{\"type\":\"Text\",\"text\":\"3.14\"}]}],\"neededScore\":0.0}";
+            var json = "{\"title\":\"test\",\"questions\":[{\"type\":\"SingleChoice\",\"question\":\"how much is pi ?\",\"score\":10.0,\"correct\":0,\"choices\":[{\"type\":\"Text\",\"text\":\"3.14\"}]}],\"neededScore\":10.0}";
 
             var quiz = Quiz.CreateFromJsonString(json);
 
