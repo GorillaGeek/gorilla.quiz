@@ -68,6 +68,7 @@
     <Compile Include="src\Choice\TextChoiceTest.cs" />
     <Compile Include="src\Question\SingleChoiceTest.cs" />
     <Compile Include="src\QuizzTest.cs" />
+    <Compile Include="src\ValidatorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

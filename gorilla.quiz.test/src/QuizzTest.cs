@@ -1,4 +1,6 @@
-﻿using Moq;
+﻿using System;
+using GorillaQuiz.Exception;
+using Moq;
 using NUnit.Framework;
 
 namespace GorillaQuiz.Test
@@ -12,7 +14,7 @@ namespace GorillaQuiz.Test
             var quiz = Quiz.Create("My Quiz");
 
             Assert.AreEqual("My Quiz", quiz.Title);
-            Assert.AreEqual(0, quiz.QuestionCount());
+            Assert.AreEqual(0, quiz.Questions.Count);
         }
 
         [Test]
@@ -22,9 +24,29 @@ namespace GorillaQuiz.Test
 
             var question = new Mock<IQuestion>();
 
-            Assert.AreEqual(0, quiz.QuestionCount());
+            Assert.AreEqual(0, quiz.Questions.Count);
             quiz.AddQuestion(question.Object);
-            Assert.AreEqual(1, quiz.QuestionCount());
+            Assert.AreEqual(1, quiz.Questions.Count);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ShouldNotAddNullQuestion()
+        {
+            var quiz = Quiz.Create("test");
+
+            quiz.AddQuestion(null);
+        }
+
+        [Test]
+        [ExpectedException(typeof(QuizException))]
+        public void ShouldNotAddTheSameQuestionMoreThanOneTime()
+        {
+            var quiz = Quiz.Create("test");
+
+            var question = new Mock<IQuestion>();
+            quiz.AddQuestion(question.Object);
+            quiz.AddQuestion(question.Object);
         }
 
         [Test]
@@ -34,10 +56,10 @@ namespace GorillaQuiz.Test
 
             var question = new Mock<IQuestion>();
             quiz.AddQuestion(question.Object);
-            Assert.AreEqual(1, quiz.QuestionCount());
+            Assert.AreEqual(1, quiz.Questions.Count);
 
             quiz.RemoveQuestion(question.Object);
-            Assert.AreEqual(0, quiz.QuestionCount());
+            Assert.AreEqual(0, quiz.Questions.Count);
         }
 
         [Test]
@@ -46,22 +68,20 @@ namespace GorillaQuiz.Test
             var quiz = Quiz.Create("test");
 
             var json = quiz.Serialize();
-
-            Assert.AreEqual("{\"title\":\"test\",\"questions\":[]}", json);
+            Assert.AreEqual("{\"title\":\"test\",\"questions\":[],\"neededScore\":0.0}", json);
         }
 
         [Test]
         public void UnserializeQuiz()
         {
-            var quiz = Quiz.Create("test");
-            var json = quiz.Serialize();
+            var json = "{\"title\":\"test\",\"questions\":[{\"type\":\"SingleChoice\",\"question\":\"how much is pi ?\",\"score\":10.0,\"correct\":0,\"choices\":[{\"type\":\"Text\",\"text\":\"3.14\"}]}],\"neededScore\":0.0}";
 
-            var quiz2 = Quiz.CreateFromJsonString(json);
+            var quiz = Quiz.CreateFromJsonString(json);
 
-            Assert.AreEqual(quiz.Title, quiz2.Title);
-            Assert.AreEqual(quiz.QuestionCount(), quiz2.QuestionCount());
+            Assert.AreEqual("test", quiz.Title);
+            Assert.AreEqual(10, quiz.NeededScore);
+            Assert.AreEqual(1, quiz.Questions.Count);
         }
-
 
     }
 }

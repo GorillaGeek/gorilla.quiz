@@ -20,26 +20,23 @@ namespace GorillaQuiz.Test.Question
         public void SingleChoiceAddChoice()
         {
             var question = SingleChoice.Create("asd");
-
             var choice = new Mock<IChoice>();
 
-            Assert.AreEqual(0, question.ChoiceCount());
+            Assert.AreEqual(0, question.Choices.Count);
             question.AddChoice(choice.Object);
-            Assert.AreEqual(1, question.ChoiceCount());
+            Assert.AreEqual(1, question.Choices.Count);
         }
 
         [Test]
         public void SingleChoiceRemoveChoice()
         {
             var question = SingleChoice.Create("asd");
-
             var choice = new Mock<IChoice>();
 
-
             question.AddChoice(choice.Object);
-            Assert.AreEqual(1, question.ChoiceCount());
+            Assert.AreEqual(1, question.Choices.Count);
             question.RemoveChoice(choice.Object);
-            Assert.AreEqual(0, question.ChoiceCount());
+            Assert.AreEqual(0, question.Choices.Count);
         }
     }
 }

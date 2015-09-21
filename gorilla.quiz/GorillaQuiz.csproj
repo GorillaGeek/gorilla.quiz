@@ -47,7 +47,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Choice\AbstractChoice.cs" />
     <Compile Include="src\Choice\TextChoice.cs" />
-    <Compile Include="src\Exception\RepeatedQuestionException.cs" />
+    <Compile Include="src\Exception\QuizException.cs" />
     <Compile Include="src\IChoice.cs" />
     <Compile Include="src\IQuestion.cs" />
     <Compile Include="src\IQuiz.cs" />
@@ -55,6 +55,8 @@
     <Compile Include="src\Question\AbstractQuestion.cs" />
     <Compile Include="src\Question\SingleChoice.cs" />
     <Compile Include="src\Quiz.cs" />
+    <Compile Include="src\ValidationSummary.cs" />
+    <Compile Include="src\Validator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

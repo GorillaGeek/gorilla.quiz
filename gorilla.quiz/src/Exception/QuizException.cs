@@ -1,6 +1,6 @@
 ﻿namespace GorillaQuiz.Exception
 {
-    class RepeatedQuestionException : System.Exception
+    public class QuizException : System.Exception
     {
 
     }

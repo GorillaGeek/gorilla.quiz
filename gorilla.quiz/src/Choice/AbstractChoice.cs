@@ -11,10 +11,9 @@ namespace GorillaQuiz.Choice
         {
             var type = (string)choice.type;
 
-            switch (type)
+            if (type == "Text")
             {
-                case "Text":
-                    return TextChoice.Create((string)choice.text, correct);
+                return TextChoice.Create((string)choice.text, correct);
             }
 
             throw new ArgumentException("Invalid choice type");

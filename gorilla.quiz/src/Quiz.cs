@@ -10,11 +10,14 @@ namespace GorillaQuiz
     {
         public string Title { get; set; }
 
-        private List<IQuestion> _questions;
+        public float NeededScore { get; set; }
 
-        private Quiz(string title)
+        private readonly List<IQuestion> _questions;
+
+        private Quiz(string title, float neededScore)
         {
             Title = title;
+            NeededScore = neededScore;
             _questions = new List<IQuestion>();
         }
 
@@ -27,7 +30,7 @@ namespace GorillaQuiz
 
             if (_questions.Contains(question))
             {
-                throw new RepeatedQuestionException();
+                throw new QuizException();
             }
 
             _questions.Add(question);
@@ -45,14 +48,11 @@ namespace GorillaQuiz
             return this;
         }
 
-        public int QuestionCount()
-        {
-            return _questions.Count;
-        }
+        public IReadOnlyCollection<IQuestion> Questions => _questions.AsReadOnly();
 
-        public static Quiz Create(string title)
+        public static Quiz Create(string title, float neededScore = .0f)
         {
-            return new Quiz(title);
+            return new Quiz(title, neededScore);
         }
 
         public string Serialize(bool @public = false)
@@ -72,14 +72,14 @@ namespace GorillaQuiz
             return new
             {
                 title = Title,
-                questions = questions
+                questions = questions,
+                neededScore = NeededScore
             };
         }
 
         public static Quiz CreateFromJsonString(string json)
         {
             var obj = JsonConvert.DeserializeObject<dynamic>(json);
-
             var quiz = Quiz.Create((string)obj.title);
 
             foreach (var q in obj.questions)
@@ -92,10 +92,7 @@ namespace GorillaQuiz
                         quiz.AddQuestion(SingleChoice.CreateFromJsonDynamic(q));
                         break;
                 }
-
-
             }
-
 
             return quiz;
         }

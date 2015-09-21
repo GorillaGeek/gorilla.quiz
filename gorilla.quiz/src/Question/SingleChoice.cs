@@ -15,6 +15,8 @@ namespace GorillaQuiz.Question
             this._choices = new List<IChoice>();
         }
 
+        public override bool AutoValidate => true;
+
         public SingleChoice AddChoice(IChoice choice)
         {
 
@@ -41,10 +43,7 @@ namespace GorillaQuiz.Question
             return this;
         }
 
-        public int ChoiceCount()
-        {
-            return _choices.Count;
-        }
+        public IReadOnlyCollection<IChoice> Choices => _choices.AsReadOnly();
 
         public static SingleChoice Create(string title, float score = 0)
         {
@@ -93,6 +92,12 @@ namespace GorillaQuiz.Question
             }
 
             return question;
+        }
+
+        public override bool Validate(dynamic response)
+        {
+            var index = (int)response;
+            return _choices.ElementAt(index).Correct;
         }
     }
 }

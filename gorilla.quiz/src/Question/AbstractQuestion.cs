@@ -9,8 +9,10 @@
         }
 
         public string Title { get; set; }
-
         public float Score { get; set; }
+
         public abstract object Export(bool @public = false);
+        public abstract bool AutoValidate { get; }
+        public abstract bool Validate(dynamic response);
     }
 }
