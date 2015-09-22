@@ -7,7 +7,7 @@ namespace GorillaQuiz.Choice
         public abstract object Export(bool @public = false);
         public abstract bool Correct { get; }
 
-        public static IChoice CreateFromJsonDynamic(dynamic choice, bool correct)
+        public static IChoice CreateFromJsonDynamic(dynamic choice, bool correct = false)
         {
             var type = (string)choice.type;
 

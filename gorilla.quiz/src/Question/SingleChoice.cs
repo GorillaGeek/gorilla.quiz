@@ -12,6 +12,12 @@ namespace GorillaQuiz.Question
 
         protected SingleChoice(string title, float score) : base(title, score)
         {
+
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                throw new ArgumentException("Question title can't be null or empty");
+            }
+
             this._choices = new List<IChoice>();
         }
 

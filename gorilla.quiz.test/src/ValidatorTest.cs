@@ -42,6 +42,16 @@ namespace GorillaQuiz.Test
         }
 
         [Test]
+        public void ValidationSummary()
+        {
+            var q = CreateQuiz();
+            var result = Validator.Validate("[]", q);
+
+            Assert.IsInstanceOf(typeof(object), result.Quizz);
+            Assert.IsInstanceOf(typeof(object), result.Response);
+        }
+
+        [Test]
         public void ValidateWithOnlySomeAnswers()
         {
             var q = CreateQuiz();

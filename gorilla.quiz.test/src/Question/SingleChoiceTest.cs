@@ -1,5 +1,7 @@
-﻿using GorillaQuiz.Question;
+﻿using System;
+using GorillaQuiz.Question;
 using Moq;
+using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace GorillaQuiz.Test.Question
@@ -37,6 +39,44 @@ namespace GorillaQuiz.Test.Question
             Assert.AreEqual(1, question.Choices.Count);
             question.RemoveChoice(choice.Object);
             Assert.AreEqual(0, question.Choices.Count);
+        }
+
+        [Test]
+        public void SingleChoiceQuestionTitleCanNotBeNull()
+        {
+            Assert.Throws<ArgumentException>(() => SingleChoice.Create(""));
+            Assert.Throws<ArgumentException>(() => SingleChoice.Create(null));
+        }
+
+        [Test]
+        public void SingleChoiceCanNotHaveTwoCorrectChoices()
+        {
+            var choice1 = new Mock<IChoice>();
+            var choice2 = new Mock<IChoice>();
+
+            choice1.SetupGet(x => x.Correct).Returns(true);
+            choice2.SetupGet(x => x.Correct).Returns(true);
+
+            var q = SingleChoice.Create("asd").AddChoice(choice1.Object);
+
+            Assert.Throws<ArgumentException>(() => q.AddChoice(choice2.Object));
+
+        }
+
+        [Test]
+        public void SingleChoiceShouldNotExportTheCorrectAnswerWhenPublic()
+        {
+            var question = SingleChoice.Create("asd");
+            var json = JsonConvert.SerializeObject(question.Export(true));
+            Assert.False(json.Contains("correct"));
+            Assert.True(json.Contains("asd"));
+        }
+
+        [Test]
+        public void SingleChoiceMustBeAutoValidateable()
+        {
+            var question = SingleChoice.Create("asd");
+            Assert.True(question.AutoValidate);
         }
     }
 }

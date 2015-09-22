@@ -30,23 +30,22 @@ namespace GorillaQuiz.Test
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void ShouldNotAddNullQuestion()
         {
             var quiz = Quiz.Create("test");
 
-            quiz.AddQuestion(null);
+            Assert.Throws<ArgumentException>(() => quiz.AddQuestion(null));
         }
 
         [Test]
-        [ExpectedException(typeof(QuizException))]
         public void ShouldNotAddTheSameQuestionMoreThanOneTime()
         {
             var quiz = Quiz.Create("test");
 
             var question = new Mock<IQuestion>();
             quiz.AddQuestion(question.Object);
-            quiz.AddQuestion(question.Object);
+
+            Assert.Throws<QuizException>(() => quiz.AddQuestion(question.Object));
         }
 
         [Test]
