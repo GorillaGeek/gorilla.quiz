@@ -69,6 +69,7 @@
     <Compile Include="src\Choice\AbstractChoiceTest.cs" />
     <Compile Include="src\Choice\TextChoiceTest.cs" />
     <Compile Include="src\Question\SingleChoiceTest.cs" />
+    <Compile Include="src\Question\MultipleChoiceTest.cs" />
     <Compile Include="src\QuizzTest.cs" />
     <Compile Include="src\ValidatorTest.cs" />
   </ItemGroup>

@@ -82,16 +82,9 @@ namespace GorillaQuiz
             var obj = JsonConvert.DeserializeObject<dynamic>(json);
             var quiz = Quiz.Create((string)obj.title, (float)obj.neededScore);
 
-            foreach (var q in obj.questions)
+            foreach (var question in obj.questions)
             {
-                var type = (string)q.type;
-
-                switch (type)
-                {
-                    case "SingleChoice":
-                        quiz.AddQuestion(SingleChoice.CreateFromJsonDynamic(q));
-                        break;
-                }
+                quiz.AddQuestion(AbstractQuestion.CreateFromJsonDynamic(question));
             }
 
             return quiz;
