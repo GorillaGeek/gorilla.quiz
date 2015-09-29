@@ -16,6 +16,7 @@ namespace GorillaQuiz.Test.Question
 
             Assert.AreEqual(10, question.Score);
             Assert.AreEqual("Hello World", question.Title);
+            Assert.AreEqual("MultipleChoice", question.Type);
         }
 
         [Test]

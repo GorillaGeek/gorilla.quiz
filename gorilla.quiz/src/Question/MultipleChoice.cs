@@ -72,10 +72,10 @@ namespace GorillaQuiz.Question
 
             if (@public)
             {
-                return new { type = "SingleChoice", question = Title, choices = choices };
+                return new { type = this.Type, question = Title, choices = choices };
             }
 
-            return new { type = "SingleChoice", question = Title, score = Score, corrects = corrects, choices = choices };
+            return new { type = this.Type, question = Title, score = Score, corrects = corrects, choices = choices };
         }
 
         public static MultipleChoice CreateFromJsonDynamic(dynamic obj)

@@ -54,6 +54,7 @@
     <Compile Include="src\IExportable.cs" />
     <Compile Include="src\Question\AbstractQuestion.cs" />
     <Compile Include="src\Question\MultipleChoice.cs" />
+    <Compile Include="src\Question\ExactAnswer.cs" />
     <Compile Include="src\Question\SingleChoice.cs" />
     <Compile Include="src\Quiz.cs" />
     <Compile Include="src\ValidationSummary.cs" />

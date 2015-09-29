@@ -13,6 +13,8 @@
 
         public abstract object Export(bool @public = false);
         public abstract bool AutoValidate { get; }
+        public string Type => this.GetType().Name;
+
         public abstract bool Validate(dynamic response);
 
         public static IQuestion CreateFromJsonDynamic(dynamic obj)
