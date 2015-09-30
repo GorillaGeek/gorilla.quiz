@@ -73,6 +73,7 @@
     <Compile Include="src\Question\MultipleChoiceTest.cs" />
     <Compile Include="src\QuizFactory.cs" />
     <Compile Include="src\QuizzTest.cs" />
+    <Compile Include="src\Utils\SlugfyTest.cs" />
     <Compile Include="src\ValidatorTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +85,7 @@
       <Name>GorillaQuizz</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

@@ -57,6 +57,7 @@
     <Compile Include="src\Question\ExactAnswer.cs" />
     <Compile Include="src\Question\SingleChoice.cs" />
     <Compile Include="src\Quiz.cs" />
+    <Compile Include="src\Utils\Slugfy.cs" />
     <Compile Include="src\ValidationSummary.cs" />
     <Compile Include="src\Validator.cs" />
   </ItemGroup>

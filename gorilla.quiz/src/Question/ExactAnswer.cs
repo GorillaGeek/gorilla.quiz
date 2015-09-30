@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using GorillaQuiz.Utils;
 
 namespace GorillaQuiz.Question
 {
@@ -67,9 +69,9 @@ namespace GorillaQuiz.Question
 
         public override bool Validate(dynamic response)
         {
-            var answer = (string)response;
-
-            return this._answers.Contains(answer);
+            var answer = Slugfy.ToSlug((string)response);
+            var sluggedAnswers = _answers.Select(ans => Slugfy.ToSlug(ans)).ToList();
+            return sluggedAnswers.Contains(answer);
         }
     }
 }
