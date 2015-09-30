@@ -31,6 +31,9 @@
                 case "MultipleChoice":
                     question = MultipleChoice.CreateFromJsonDynamic(obj);
                     break;
+                case "ExactAnswer":
+                    question = ExactAnswer.CreateFromJsonDynamic(obj);
+                    break;
                 default:
                     throw new System.Exception("Invalid question type");
             }

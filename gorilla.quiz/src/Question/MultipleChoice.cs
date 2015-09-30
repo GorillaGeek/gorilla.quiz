@@ -80,7 +80,7 @@ namespace GorillaQuiz.Question
 
         public static MultipleChoice CreateFromJsonDynamic(dynamic obj)
         {
-            var corrects = (List<int>)obj.corrects;
+            var corrects = ((Newtonsoft.Json.Linq.JArray)obj.corrects).ToObject<List<int>>();
             var question = MultipleChoice.Create((string)obj.question, (float)obj.score);
 
             var index = 0;
@@ -98,8 +98,14 @@ namespace GorillaQuiz.Question
 
         public override bool Validate(dynamic response)
         {
-            var index = (int)response;
-            return _choices.ElementAt(index).Correct;
+            var indexes = ((Newtonsoft.Json.Linq.JArray)response).ToObject<List<int>>();
+
+            if (_choices.Count(x => x.Correct) != indexes.Count())
+            {
+                return false;
+            }
+
+            return indexes.All(index => _choices.ElementAt(index).Correct);
         }
     }
 }

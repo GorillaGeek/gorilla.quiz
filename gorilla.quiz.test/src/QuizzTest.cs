@@ -64,22 +64,22 @@ namespace GorillaQuiz.Test
         [Test]
         public void SerializeQuiz()
         {
-            var quiz = Quiz.Create("test");
+            var quiz = QuizFactory.CreateQuiz();
 
             var json = quiz.Serialize();
-            Assert.AreEqual("{\"title\":\"test\",\"questions\":[],\"neededScore\":0.0}", json);
+            Assert.AreEqual("{\"title\":\"teste\",\"questions\":[{\"type\":\"SingleChoice\",\"question\":\"Qual o nome do prado\",\"score\":10.0,\"correct\":2,\"choices\":[{\"type\":\"Text\",\"text\":\"Paulo\"},{\"type\":\"Text\",\"text\":\"Danilo\"},{\"type\":\"Text\",\"text\":\"Daniel\"}]},{\"type\":\"MultipleChoice\",\"question\":\"Quais desses números são primos\",\"score\":5.0,\"corrects\":[0,1],\"choices\":[{\"type\":\"Text\",\"text\":\"2\"},{\"type\":\"Text\",\"text\":\"3\"},{\"type\":\"Text\",\"text\":\"4\"}]},{\"type\":\"ExactAnswer\",\"question\":\"Qual é a cor do ceu?\",\"score\":5.0,\"answers\":[\"Azul\"]}],\"neededScore\":12.0}", json);
         }
 
         [Test]
         public void UnserializeQuiz()
         {
-            var json = "{\"title\":\"test\",\"questions\":[{\"type\":\"SingleChoice\",\"question\":\"how much is pi ?\",\"score\":10.0,\"correct\":0,\"choices\":[{\"type\":\"Text\",\"text\":\"3.14\"}]}],\"neededScore\":10.0}";
+            var json = "{\"title\":\"teste\",\"questions\":[{\"type\":\"SingleChoice\",\"question\":\"Qual o nome do prado\",\"score\":10.0,\"correct\":2,\"choices\":[{\"type\":\"Text\",\"text\":\"Paulo\"},{\"type\":\"Text\",\"text\":\"Danilo\"},{\"type\":\"Text\",\"text\":\"Daniel\"}]},{\"type\":\"MultipleChoice\",\"question\":\"Quais desses números são primos\",\"score\":5.0,\"corrects\":[0,1],\"choices\":[{\"type\":\"Text\",\"text\":\"2\"},{\"type\":\"Text\",\"text\":\"3\"},{\"type\":\"Text\",\"text\":\"4\"}]},{\"type\":\"ExactAnswer\",\"question\":\"Qual é a cor do ceu?\",\"score\":5.0,\"answers\":[\"Azul\"]}],\"neededScore\":12.0}";
 
             var quiz = Quiz.CreateFromJsonString(json);
 
-            Assert.AreEqual("test", quiz.Title);
-            Assert.AreEqual(10, quiz.NeededScore);
-            Assert.AreEqual(1, quiz.Questions.Count);
+            Assert.AreEqual("teste", quiz.Title);
+            Assert.AreEqual(12, quiz.NeededScore);
+            Assert.AreEqual(3, quiz.Questions.Count);
         }
 
     }

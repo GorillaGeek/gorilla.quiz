@@ -1,4 +1,5 @@
 ﻿using System;
+using GorillaQuiz.Choice;
 using GorillaQuiz.Question;
 using Moq;
 using Newtonsoft.Json;
@@ -17,6 +18,13 @@ namespace GorillaQuiz.Test.Question
             Assert.AreEqual(10, question.Score);
             Assert.AreEqual("Hello World", question.Title);
             Assert.AreEqual("MultipleChoice", question.Type);
+        }
+
+        [Test]
+        public void MultipleChoiceQuestionCantHaveEmptyTitle()
+        {
+            Assert.Throws<ArgumentException>(() => MultipleChoice.Create(null));
+            Assert.Throws<ArgumentException>(() => MultipleChoice.Create(""));
         }
 
         [Test]
@@ -43,13 +51,6 @@ namespace GorillaQuiz.Test.Question
         }
 
         [Test]
-        public void MultipleChoiceQuestionTitleCanNotBeNull()
-        {
-            Assert.Throws<ArgumentException>(() => SingleChoice.Create(""));
-            Assert.Throws<ArgumentException>(() => SingleChoice.Create(null));
-        }
-
-        [Test]
         public void MultipleChoiceCanHaveManyCorrectChoices()
         {
             var choice1 = new Mock<IChoice>();
@@ -68,17 +69,29 @@ namespace GorillaQuiz.Test.Question
         [Test]
         public void MultipleChoiceShouldNotExportTheCorrectAnswerWhenPublic()
         {
-            var question = SingleChoice.Create("asd");
+            var question = MultipleChoice.Create("asd").AddChoice(TextChoice.Create("teste", true));
+
             var json = JsonConvert.SerializeObject(question.Export(true));
             Assert.False(json.Contains("corrects"));
+            Assert.True(json.Contains("test"));
             Assert.True(json.Contains("asd"));
+        }
+
+        [Test]
+        public void MultipleChoiceShouldExportTheCorrectAnswerWhenNotPublic()
+        {
+            var question = MultipleChoice.Create("asd").AddChoice(TextChoice.Create("teste", true));
+
+            var json = JsonConvert.SerializeObject(question.Export());
+            Assert.True(json.Contains("corrects"));
         }
 
         [Test]
         public void MultipleChoiceMustBeAutoValidateable()
         {
-            var question = SingleChoice.Create("asd");
+            var question = MultipleChoice.Create("asd");
             Assert.True(question.AutoValidate);
         }
+
     }
 }
